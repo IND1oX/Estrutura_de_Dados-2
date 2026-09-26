@@ -92,4 +92,4 @@ python arvore_avancada_imp.py
 Disciplina: Estruturas de Dados II
 Curso: Ciência da Computação
 Turma: N1 / Ciência da Computação
-Data: 11/09/2026
+Data: 25/09/2026
