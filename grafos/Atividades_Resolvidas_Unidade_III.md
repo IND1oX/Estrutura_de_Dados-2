@@ -24,6 +24,8 @@ E=\{(1,2),(1,4),(1,5),(2,3),(3,4),(4,4)\}
 
 ### Respostas
 
+![Grafo da Atividade 1](./imagens/atividade1-grafo.svg)
+
 **1. Número de vértices:** 5.
 
 **2. Número de arestas:** 6.
@@ -153,6 +155,8 @@ Porque as ruas são de mão única. A direção da aresta informa o sentido perm
 O material-base informa que os dois grafos serão apresentados pela professora, mas não especifica suas arestas no texto. Para demonstrar o procedimento, esta resolução usa o seguinte par de grafos de exemplo.
 
 ### 1. Definição dos grafos
+
+![Comparação dos grafos G e H](./imagens/atividade5-isomorfismo.svg)
 
 Para o grafo G:
 
