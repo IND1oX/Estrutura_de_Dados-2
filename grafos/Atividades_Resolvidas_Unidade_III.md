@@ -86,6 +86,8 @@ Como o enunciado permite criar a rede, considere a seguinte proposta de exemplo.
 
 ### 1. Conjunto de vértices
 
+![Rede de amizades da Atividade 3](./imagens/atividade3-amizades.svg)
+
 \[
 V=\{\text{João, Carolina, Maria, Marco}\}
 \]
@@ -122,6 +124,8 @@ Cada aresta representa uma amizade entre duas pessoas.
 Para construir uma resposta completa, considere quatro cruzamentos, identificados por A, B, C e D. Neste exemplo, o vértice B representa o ponto chamado **Rua das Flores** no enunciado.
 
 ### 1. Conjunto de vértices
+
+![Grafo dirigido da Atividade 4](./imagens/atividade4-ruas.svg)
 
 \[
 V=\{A,B,C,D\}
@@ -238,6 +242,8 @@ E=\{(1,2),(1,4),(1,5),(2,3),(3,4),(4,4)\}
 
 ### Subgrafo G1
 
+![Exemplos visuais de subgrafos](./imagens/atividade6-subgrafos.svg)
+
 \[
 V(G_1)=\{1,2,3\}
 \]
@@ -273,6 +279,8 @@ O texto-base não informa numericamente a sequência a ser construída. Para man
 \]
 
 ### 1. Conjunto de vértices
+
+![Grafo da sequência de graus](./imagens/atividade7-sequencia-graus.svg)
 
 \[
 V=\{A,B,C,D,E,F,G,H\}
