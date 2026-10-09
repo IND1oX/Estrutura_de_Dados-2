@@ -82,7 +82,6 @@ Usando o grafo da Atividade 1:
 
 ## Atividade 3 — Modelagem de uma rede de amizades
 
-Como o enunciado permite criar a rede, considere a seguinte proposta de exemplo.
 
 ### 1. Conjunto de vértices
 
@@ -121,7 +120,6 @@ Cada aresta representa uma amizade entre duas pessoas.
 
 ## Atividade 4 — Modelagem de ruas de mão única
 
-Para construir uma resposta completa, considere quatro cruzamentos, identificados por A, B, C e D. Neste exemplo, o vértice B representa o ponto chamado **Rua das Flores** no enunciado.
 
 ### 1. Conjunto de vértices
 
