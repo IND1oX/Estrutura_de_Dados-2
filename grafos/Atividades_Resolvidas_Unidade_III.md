@@ -156,7 +156,6 @@ Porque as ruas são de mão única. A direção da aresta informa o sentido perm
 
 ## Atividade 5 — Desafio de isomorfismo
 
-O material-base informa que os dois grafos serão apresentados pela professora, mas não especifica suas arestas no texto. Para demonstrar o procedimento, esta resolução usa o seguinte par de grafos de exemplo.
 
 ### 1. Definição dos grafos
 
