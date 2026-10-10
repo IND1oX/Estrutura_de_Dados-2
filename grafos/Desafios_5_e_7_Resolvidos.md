@@ -5,7 +5,7 @@
 **Professora:** Kadidja Valéria  
 **Estudante:** Gustavo Alves  
 **Material:** *Material do Estudante — Desafios 5 e 7* (em `material/`)  
-**Plataforma:** Python/NetworkX (script `gerar_grafos_desafios.py`) — desenhos reproduzíveis no Graph Online (ver seção final)
+**Plataformas:** Miro (quadro: https://miro.com/app/board/uXjVEbl3LCk=/) e Python/NetworkX (script `gerar_grafos_desafios.py`); desenhos também reproduzíveis no Graph Online (ver seção final)
 
 ---
 
