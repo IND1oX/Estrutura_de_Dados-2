@@ -4,8 +4,8 @@
 **Unidade III:** Grafos  
 **Professora:** Kadidja Valéria  
 **Estudante:** Gustavo Alves  
-**Material:** *Material do Estudante — Desafios 5 e 7* (em `material/`)  
-**Plataformas:** Miro (quadro: https://miro.com/app/board/uXjVEbl3LCk=/) e Python/NetworkX (script `gerar_grafos_desafios.py`); desenhos também reproduzíveis no Graph Online (ver seção final)
+**Material:** *Material do Estudante — Desafios 5 e 7*  
+**Plataforma:** Miro (quadro: https://miro.com/app/board/uXjVEbl3LCk=/)  
 
 ---
 
@@ -13,8 +13,6 @@
 
 **G:** V = {1, 2, 3, 4}; E = {(1,2), (2,3), (3,4), (4,1)}  
 **H:** V = {a, b, c, d}; E = {(a,c), (c,b), (b,d), (d,a)}
-
-![Desafio 5 — isomorfismo entre G e H](imagens/desafio5-isomorfismo.png)
 
 ### 1. Ordem e tamanho
 
@@ -78,8 +76,6 @@ Não. A igualdade da sequência de graus é uma condição necessária, mas não
 **Sequência solicitada (ordem não decrescente):** (1, 1, 2, 3, 3, 4, 4, 6)  
 **Condição:** grafo simples (sem laços e sem arestas paralelas) com oito vértices.
 
-![Desafio 7 — grafo com sequência de graus (1, 1, 2, 3, 3, 4, 4, 6)](imagens/desafio7-sequencia-graus.png)
-
 ### Planejamento
 
 A soma da sequência é 1 + 1 + 2 + 3 + 3 + 4 + 4 + 6 = 24, valor par, de modo que o grafo deve ter 24 / 2 = 12 arestas. O vértice de maior grau (A, grau 6) foi ligado a seis dos outros sete vértices; os demais vértices foram então completados com as arestas restantes, sem repetir pares e sem usar laços.
@@ -125,7 +121,7 @@ A sequência obtida coincide com a solicitada. A igualdade entre a soma dos grau
 
 ## Como reproduzir no Graph Online
 
-Os desenhos deste arquivo foram gerados com Python/NetworkX (`python gerar_grafos_desafios.py`), que também confere por código a ordem, o tamanho, os graus, o isomorfismo e a soma dos graus. Para refazê-los no Graph Online (https://graphonline.ru), basta criar os vértices e ligar os pares abaixo:
+Os grafos foram construídos no Miro (link no cabeçalho). Para refazê-los no Graph Online (https://graphonline.ru), basta criar os vértices e ligar os pares abaixo:
 
 - **G:** 1–2, 2–3, 3–4, 4–1  
 - **H:** a–c, c–b, b–d, d–a  

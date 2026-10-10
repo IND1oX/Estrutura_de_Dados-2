@@ -217,8 +217,6 @@ O que fazer
 -   Graph Online;
 -   diagrams.net.
 
-![Atividade 5 - Grafos G e H no Miro](imagens/desafio5-isomorfismo.png)
-
 Grafos construídos no Miro: https://miro.com/app/board/uXjVEbl3LCk=/
 
 -------------------------------------------------------------------------------------
@@ -329,7 +327,7 @@ indicada pela professora.
 
 ------------------------------------------------------------------------
 
-![Atividade 7 - Grafo com sequência de graus (1, 1, 2, 3, 3, 4, 4, 6) no Miro](imagens/desafio7-sequencia-graus.png)
+<img width="328" height="348" alt="graphviz" src="https://github.com/user-attachments/assets/57cb9ec5-9ef9-4cd7-9dbe-aebd23e0fa4a" />
 
 Grafos construídos no Miro: https://miro.com/app/board/uXjVEbl3LCk=/
 
