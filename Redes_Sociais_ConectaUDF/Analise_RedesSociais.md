@@ -4,7 +4,7 @@
 **Estudante:** Gustavo Alves  
 **Objetivo:** desenvolver uma rede social por meio de um grafo, calculando métricas e analisando as relações entre os usuários.  
 **Material:** [Caderno do Estudante](Caderno_do_Estudante_ConectaUDF.md)  
-**Código:** [conecta_udf.py](conecta_udf.py)  
+**Código:** pacote [conecta_udf](conecta_udf/) (testes em [tests](tests/); instruções no [README](README.md))  
 **Desenho do grafo (Miro):** https://miro.com/app/board/uXjVEYmJPE4=/
 
 ---
@@ -61,7 +61,7 @@ D = 2 × 8 / (6 × (6 − 1)) = 16 / 30
 
 ## 6. Representação em Python
 
-O código completo, com validações, está em [conecta_udf.py](conecta_udf.py). A lista de adjacência e o cálculo das métricas são:
+A versão básica pedida no Caderno (lista de adjacência e cálculo das métricas) é a seguinte. A versão final, refatorada em módulos e com testes, está descrita na seção 11 e no pacote [conecta_udf](conecta_udf/).
 
 ```python
 rede = {
@@ -93,7 +93,7 @@ Total de amizades: 8
 Densidade: 53.33% (0.5333)
 ```
 
-Os valores calculados pelo programa coincidem com os cálculos manuais das seções 3, 4 e 5.
+Os valores calculados pelo programa coincidem com os cálculos manuais das seções 3, 4 e 5 (verificado também por testes automatizados).
 
 ## 7. Caminho de Ana até Felipe
 
@@ -102,14 +102,14 @@ Os valores calculados pelo programa coincidem com os cálculos manuais das seç�
 - Quantidade de arestas no caminho: **3**
 - Outro caminho com a mesma quantidade de arestas: `Ana → Carla → Elisa → Felipe`
 
-Não existe caminho com menos de 3 arestas, pois Ana só é amiga de Bruno e Carla, e nenhum dos dois é amigo de Felipe. A busca em largura do programa confirma que a distância é 3.
+Não existe caminho com menos de 3 arestas, pois Ana só é amiga de Bruno e Carla, e nenhum dos dois é amigo de Felipe. A busca em largura (`menor_caminho` e `caminhos_minimos`) confirma que a distância é 3 e que há exatamente dois caminhos mínimos.
 
 ## 8. Desafio em grupo: rede ampliada
 
 **Novos usuários (4):** Gabriela, Hugo, Iris e Joana.  
 **Novas amizades (6):** Felipe–Gabriela, Gabriela–Hugo, Hugo–Iris, Iris–Joana, Joana–Ana e Hugo–Diego.
 
-A lista de adjacência foi atualizada no programa (variável `rede2`), e o desenho está no quadro "Rede ampliada (10 usuários)" do Miro, com os novos usuários em verde.
+Os novos dados foram acrescentados em [dados.py](conecta_udf/dados.py) (`rede_ampliada()`), e o desenho está no quadro "Rede ampliada (10 usuários)" do Miro, com os novos usuários em verde.
 
 | Usuário | Grau |
 |---|---:|
@@ -144,13 +144,57 @@ A lista de adjacência foi atualizada no programa (variável `rede2`), e o desen
 
 **Duas pessoas ainda não são amigas, mas têm três amigos em comum. Como essa informação poderia ser usada para sugerir uma nova conexão? Quais cuidados de privacidade devem ser considerados?**
 
-Três amigos em comum indicam que as duas pessoas pertencem à mesma vizinhança do grafo: existem três caminhos de duas arestas entre elas, o que torna provável que se conheçam ou venham a se conhecer. A rede pode ordenar as sugestões pela quantidade de amigos em comum e exibi-las ao usuário como "pessoas que você talvez conheça", exatamente como faz a função `recomendar` do programa.
+Três amigos em comum indicam que as duas pessoas pertencem à mesma vizinhança do grafo: existem três caminhos de duas arestas entre elas, o que torna provável que se conheçam ou venham a se conhecer. A rede pode ordenar as sugestões pela quantidade de amigos em comum e exibi-las ao usuário como "pessoas que você talvez conheça", exatamente como faz o método `sugestoes_de_amizade` da classe `RedeSocial`.
 
 Quanto à privacidade, é necessário: (a) obter o consentimento do usuário para que sua lista de amigos seja usada em recomendações, em conformidade com a Lei Geral de Proteção de Dados (Lei nº 13.709/2018); (b) permitir que cada pessoa oculte sua lista de amigos e opte por não ser sugerida; (c) evitar que a sugestão revele relações privadas, por exemplo expor quem são os amigos em comum quando eles preferem não ser identificados, ou sugerir ex-parceiros, agressores ou pessoas bloqueadas; (d) usar apenas os dados necessários, armazená-los com segurança e deixar claro, em linguagem simples, como a recomendação é calculada.
 
 ## 10. Conclusão
 
 A representação por grafo permitiu quantificar a rede ConectaUDF por meio do grau, do número de amizades e da densidade, localizar caminhos entre usuários e gerar recomendações a partir de vizinhos em comum. A rede original tem 6 usuários, 8 amizades e densidade de 53,33 %; após a ampliação, 10 usuários, 14 amizades e densidade de 31,11 %.
+
+## 11. Refatoração e boas práticas
+
+A primeira versão do programa era um *script* procedural, com variáveis globais e todos os cálculos misturados com a impressão. Ela funcionava, mas apresentava os seguintes problemas (*code smells*), que motivaram a refatoração:
+
+| Problema na versão inicial | Refatoração aplicada |
+|---|---|
+| Lógica de grafo, dados e impressão no mesmo arquivo | Separação em módulos: `grafo.py` (estrutura de dados e algoritmos), `dados.py` (dados do Caderno), `relatorio.py` (formatação) e `__main__.py` (programa principal) |
+| Dicionário de listas escrito à mão: cada amizade aparece duas vezes e pode ficar inconsistente (A lista B, mas B não lista A) | Classe `RedeSocial` com `adicionar_amizade`, que grava a aresta nos dois sentidos; a lista de adjacência do Caderno é aceita por `de_lista_de_adjacencia`, que **valida** reciprocidade, laços e repetições |
+| Listas (`list`) permitiam amizade repetida | Conjuntos (`set`) por usuário: a repetição é impossível por construção |
+| Funções que dependiam de variáveis globais | Funções e métodos que recebem tudo por parâmetro e devolvem valores (sem efeitos colaterais) |
+| Cálculo misturado com `print` | Métodos retornam valores; `relatorio.py` só monta *strings*, e quem imprime é o `main` |
+| Divisão por zero em redes com menos de 2 usuários | `densidade()` trata o caso e devolve 0 |
+| Busca de caminho recursiva, que só encontrava caminhos de tamanho fixo | Busca em largura `O(V + E)`, que garante o **menor** caminho, e `caminhos_minimos` para listar todos |
+| Sem testes | 33 testes automatizados com `unittest` |
+| Sem documentação | *Docstrings* em todo o código, *type hints* e README |
+
+**Decisões de projeto**
+
+- **Lista de adjacência com conjuntos** em vez de matriz de adjacência: o grafo é esparso (8 arestas entre 15 pares possíveis na rede original), a memória é `O(V + E)` e consultar os amigos de um usuário é direto.
+- **Determinismo:** os vizinhos são percorridos em ordem alfabética, de modo que o resultado do programa e dos testes é sempre o mesmo.
+- **Sem bibliotecas externas** no código principal (apenas a biblioteca padrão), para que o programa rode em qualquer ambiente, inclusive no Google Colab. O NetworkX é usado **somente nos testes**, como referência, e os testes são ignorados se ele não estiver instalado.
+
+**Complexidade dos algoritmos**
+
+| Operação | Complexidade |
+|---|---|
+| `grau`, `sao_amigos`, `adicionar_amizade` | O(1) em média |
+| `densidade`, `numero_amizades`, `graus` | O(V) |
+| `menor_caminho`, `distancia`, componentes conexos, proximidade de um usuário | O(V + E) |
+| `diametro` | O(V · (V + E)) |
+| `sugestoes_de_amizade` | O(V² · grau máximo) |
+
+**Testes.** Os testes conferem (i) os valores do Caderno e da apresentação (ordem 6, tamanho 8, densidade 16/30, caminho Ana → Felipe de 3 arestas e seus dois caminhos mínimos); (ii) propriedades gerais, como o Lema do Aperto de Mãos (soma dos graus = 2E); (iii) casos de borda (rede vazia, usuário isolado, rede desconexa, laços, amizades repetidas, usuário inexistente); e (iv) a concordância de densidade, graus, proximidade, agrupamento, diâmetro e caminhos mínimos com o NetworkX nas redes original, ampliada e desconexa.
+
+## 12. Outras métricas (pergunta da apresentação)
+
+Além de grau, número de arestas e densidade, o programa calcula:
+
+- **Componentes conexos e diâmetro:** a rede original e a ampliada são conexas; o diâmetro vai de 3 para 4 (a maior distância entre dois usuários aumentou com a ampliação).
+- **Centralidade de proximidade (*closeness*):** inverso da distância média até os demais usuários. Na rede original, Bruno, Carla, Diego e Elisa têm proximidade 0,714, e Ana e Felipe, 0,556. Na rede ampliada, Diego é o mais próximo dos demais (0,600).
+- **Coeficiente de agrupamento:** fração dos pares de amigos de um usuário que também são amigos. Ana e Felipe têm 1,000 (os dois amigos de cada um são amigos entre si), enquanto Bruno, Carla, Diego e Elisa têm 0,333.
+
+**Quem é mais conectado é o mais influente?** Não necessariamente. O grau mede apenas as conexões diretas. Na rede original, quatro usuários empatam em grau 3, e o grau não distingue, por exemplo, uma pessoa cujos amigos formam um grupo fechado (Ana, agrupamento 1,000) de uma que conecta grupos diferentes. A proximidade e o agrupamento descrevem o papel do usuário na estrutura da rede, e uma análise de influência deveria considerar também outras métricas, como a centralidade de intermediação (quantos caminhos mínimos passam pelo usuário), que não foi implementada neste projeto.
 
 ## Referência
 
