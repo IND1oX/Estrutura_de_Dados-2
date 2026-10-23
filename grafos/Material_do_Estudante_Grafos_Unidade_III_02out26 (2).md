@@ -217,8 +217,6 @@ O que fazer
 -   Graph Online;
 -   diagrams.net.
 
-Grafos construídos no Miro: https://miro.com/app/board/uXjVEbl3LCk=/
-
 -------------------------------------------------------------------------------------
 5.1- 
 Ordem e Tamanho
@@ -327,9 +325,7 @@ indicada pela professora.
 
 ------------------------------------------------------------------------
 
-<img width="328" height="348" alt="graphviz" src="https://github.com/user-attachments/assets/57cb9ec5-9ef9-4cd7-9dbe-aebd23e0fa4a" />
-
-Grafos construídos no Miro: https://miro.com/app/board/uXjVEbl3LCk=/
+<img width="328" height="348" alt="graphviz" src="https://github.com/user-attachments/assets/57cb9ec5-9ef9-4cd7-9dbe-aebd23e0fa4a" /> 
 
 ------------------------------------------------------------------------
 7.2-
