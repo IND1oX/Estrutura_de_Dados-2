@@ -19,17 +19,17 @@ Neste projeto, a amizade é recíproca. Portanto, usamos um **grafo não direcio
 |---|---|
 | A | Ana |
 | B | Bruno |
-| C | Carla |
+| C | Carlos |
 | D | Diego |
 | E | Elisa |
 | F | Felipe |
 
 As amizades são:
 1. Ana — Bruno
-2. Ana — Carla
-3. Bruno — Carla
+2. Ana — Carlos
+3. Bruno — Carlos
 4. Bruno — Diego
-5. Carla — Elisa
+5. Carlos — Elisa
 6. Diego — Elisa
 7. Diego — Felipe
 8. Elisa — Felipe
@@ -41,6 +41,7 @@ As amizades são:
 4. Não desenhe duas linhas para a mesma amizade.
 5. Confira se todas as oito amizades aparecem.
 
+<img width="528" height="359" alt="image" src="https://github.com/user-attachments/assets/0b521afc-4c50-4787-846b-51c6bfddc6f0" />
 **Espaço para o seu desenho:** faça o grafo no caderno ou em uma ferramenta de desenho.
 
 ## 5. Passo a passo: calcule o grau
@@ -48,25 +49,24 @@ Conte quantas linhas chegam a cada círculo. Registre o resultado.
 
 | Usuário | Amigos diretos | Grau |
 |---|---|---:|
-| Ana | __________________ | ____ |
-| Bruno | __________________ | ____ |
-| Carla | __________________ | ____ |
-| Diego | __________________ | ____ |
-| Elisa | __________________ | ____ |
-| Felipe | __________________ | ____ |
+| Ana | Bruno - Carlos | 2 |
+| Bruno | Ana - Carlos - Diego | 3 |
+| Carla | Ana - Bruno - Elisa | 3 |
+| Diego | Bruno - Elisa - Felipe | 3 |
+| Elisa | Carlos - Diego - Felipe | 3 |
+| Felipe | Diego - Elisa | 2 |
 
 **Pergunta 1:** quem tem mais conexões diretas?  
-Resposta: __________________________________________________
-
+Resposta: Bruno, Carlos, Diego e Elisa.
 ## 6. Passo a passo: calcule o número de amizades
 Some todos os graus. Como cada amizade conecta dois usuários, cada aresta é contada duas vezes.
 
 **Fórmula:**  
 `Número de arestas = soma dos graus ÷ 2`
 
-1. Soma dos graus: ______
-2. Divida por 2: ______ ÷ 2 = ______
-3. Quantas amizades existem no grafo? ______
+1. Soma dos graus: 16
+2. Divida por 2: 16 ÷ 2 = 8
+3. Quantas amizades existem no grafo? 8
 
 ## 7. Passo a passo: calcule a densidade
 A densidade compara as amizades existentes com o total de amizades possíveis.
@@ -80,11 +80,10 @@ Em que:
 - `E` = número de arestas;
 - `V` = número de vértices.
 
-Substitua os valores:
-`D = 2 × ____ / (____ × (____ − 1))`
+Substitua os valores: D = 2 × 8 / ( 6 × ( 6 − 1))
 
-Resultado decimal: __________  
-Resultado percentual: __________ %
+Resultado decimal: 16/30 = 0,53
+Resultado percentual: 53,3 %
 
 **Interprete:** a rede tem poucas ou muitas das conexões possíveis? Explique com suas palavras.
 
@@ -133,23 +132,57 @@ print(f"Densidade: {densidade:.2%}")
 Encontre um caminho de Ana até Felipe. Cada passagem por uma linha corresponde a uma aresta.
 
 Exemplo de registro:
-`Ana → __________ → __________ → Felipe`
+`Ana → Bruno → Diego → Felipe`
 
-- Quantas arestas há no caminho? ______
+- Quantas arestas há no caminho? 3
 - Você encontrou outro caminho com a mesma quantidade de arestas? Qual?
-
-________________________________________________________________
+Ana → Carlos → Elisa → Felipe
 
 ## 10. Desafio em grupo
 Amplie a rede social:
 1. Adicione pelo menos quatro usuários fictícios.
-2. Crie no mínimo cinco novas amizades.
-3. Atualize a lista de adjacência no Python.
-4. Recalcule os graus, o total de arestas e a densidade.
-5. Compare a densidade antes e depois da ampliação.
-6. Identifique os usuários com mais conexões.
-7. Explique como a rede poderia recomendar uma nova amizade.
+2. Crie no mínimo cinco novas amizades.  <img width="2859" height="1176" alt="image" src="https://github.com/user-attachments/assets/6024af40-d351-49f5-923b-b35c87ee30ea" />
 
+3. Atualize a lista de adjacência no Python. rede_ampliada = {
+  "Ana": ["Bruno", "Carlos"],
+  "Bruno": ["Ana", "Carlos", "Diego", "Gabriel"],
+  "Carla": ["Ana", "Bruno", "Elisa", "Gabriel"],
+  "Diego": ["Bruno", "Elisa", "Felipe"],
+  "Elisa": ["Carlos", "Diego", "Felipe", "Igor"],
+  "Felipe": ["Diego", "Elisa", "Helena"],
+  "Gabriel": ["Bruno", "Carlos", "Julia"],
+  "Helena": ["Felipe", "Igor"],
+  "Igor": ["Elisa", "Helena"],
+  "Julia": ["Gabriel"]
+}
+# Quantidade de usuários (V)
+n = len(rede_ampliada)
+print("=== GRAU DE CADA USUÁRIO (REDE AMPLIADA) ===")
+for usuario, amigos in rede_ampliada.items():
+
+  print(f"{usuario}: {len(amigos)} conexões -> {amigos}")
+# Cálculo de arestas (E)
+soma_graus = sum(len(amigos) for amigos in rede_ampliada.values())
+arestas = soma_graus // 2
+# Cálculo de densidade (D)
+densidade = (2 * arestas) / (n * (n - 1))
+print("\n=== RESUMO MÉTRICO ===")
+print(f"Soma dos graus: {soma_graus}")
+print(f"Total de usuários (V): {n}")
+print(f"Total de amizades (E): {arestas}")
+print(f"Densidade da rede: {densidade:.4f} ({densidade:.2%})")
+# Identificando os usuários mais conectados
+
+maior_grau = max(len(amigos) for amigos in rede_ampliada.values())
+
+mais_conectados = [u for u, a in rede_ampliada.items() if len(a) == maior_grau]
+
+print(f"Usuários mais conectados (Grau {maior_grau}): {', '.join(mais_conectados)}")
+4. Recalcule os graus, o total de arestas e a densidade.
+5. Compare a densidade antes e depois da ampliação. | Usuário | Amigos diretos | Grau | |---|---|---:| | Ana | Bruno - Carlos | 2 | | Bruno | Ana - Carlos - Diego - Gabriel | 4 | | Carlos | Ana - Bruno - Elisa - Gabriel | 4 | | Diego | Bruno - Elisa - Felipe | 3 | | Elisa | Carlos - Diego - Felipe - Igor | 4 | | Felipe | Diego - Elisa - Helena | 3 | | Gabriel | Bruno - Carlos - Julia | 3 | | Helena | Felipe - Igor | 2 | | Igor | Elisa - Helena | 2 | | Julia | Gabriel | 1 |
+6. Identifique os usuários com mais conexões. Os usuários com mais conexão são Bruno, Carlos e Elisa.
+7. QExplique como a rede poderia recomendar uma nova amizade.
+Resposta: Se duas pessoas não são amigas, mas têm três amigos em comum, é provável que se conheçam. A rede pode usar essa informação para sugerir a amizade, mostrando quem são os amigos em comum.
 ## 11. Entrega
 Entregue:
 - desenho do grafo;
@@ -160,3 +193,5 @@ Entregue:
 
 ## 12. Pergunta de reflexão
 Duas pessoas ainda não são amigas, mas têm três amigos em comum. Como essa informação poderia ser usada para sugerir uma nova conexão? Quais cuidados de privacidade devem ser considerados ao analisar redes sociais?
+
+Se duas pessoas não são amigas, mas têm três amigos em comum, é provável que se conheçam. A rede pode usar essa informação para sugerir a amizade, mostrando quem são os amigos em comum. Sobre privacidade, o cuidado principal é que a pessoa saiba que seus dados são usados e possa escolher se quer isso. Também é preciso evitar que a sugestão exponha vínculos que alguém prefere manter em sigilo.

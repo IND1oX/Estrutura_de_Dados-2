@@ -121,6 +121,7 @@ print("Total de amizades:", arestas)
 densidade = (2 * arestas) / (n * (n - 1))
 print(f"Densidade: {densidade:.2%}")
 ```
+[Link Código Colab Python]([https://www.exemplo.com](https://colab.research.google.com/drive/1WDlOlzUFfr_8S85CpUbiONflTCFBnNPB))
 
 ### Entenda o código
 1. `rede` guarda os usuários e suas listas de amigos.
