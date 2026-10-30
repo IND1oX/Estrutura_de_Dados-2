@@ -20,10 +20,6 @@ Amizades:
 - Diego — Felipe
 - Elisa — Felipe
 
-### Grafo da rede inicial
-
-![Grafo da rede social inicial](grafo_rede_inicial.png)
-
 Conjunto de vértices:
 
 \[
@@ -172,10 +168,6 @@ Novas amizades:
 - Carla — Igor
 - Diego — Júlia
 - Elisa — Gabriel
-
-### Grafo da rede ampliada
-
-![Grafo da rede social ampliada](grafo_rede_ampliada.png)
 
 ### Lista de adjacência atualizada
 
