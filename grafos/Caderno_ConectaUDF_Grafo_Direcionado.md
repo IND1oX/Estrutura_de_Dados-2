@@ -119,6 +119,8 @@ print(f"Densidade: {densidade:.2%}")
 
 <img width="528" height="359" alt="image" src="https://github.com/user-attachments/assets/0b521afc-4c50-4787-846b-51c6bfddc6f0" />
 
+[Link Código Colab Python](https://colab.research.google.com/drive/1vFO2Kq_weCGe1NYGcZcLzVvFwY6kIjk7?usp=sharing)
+
 
 ### Entenda o código
 1. `rede` guarda os usuários e suas listas de amigos.
