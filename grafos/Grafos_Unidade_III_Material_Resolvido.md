@@ -72,19 +72,22 @@ Considere:
 -   Graphviz;
 -   Google Colab com Python e NetworkX.
 
+### Resolução
+
+- **Ordem:** |V| = 5
+- **Tamanho:** |E| = 6
+- **Laço:** sim, a aresta `(4,4)`
+- **Graus:**
+
+| Vértice | 1 | 2 | 3 | 4 | 5 |
+|---|:-:|:-:|:-:|:-:|:-:|
+| Grau | 3 | 2 | 2 | 4 | 1 |
+
+**Grafo:**
+
+<img width="451" height="332" alt="Grafo da Atividade 1" src="https://github.com/user-attachments/assets/5095546d-994c-4b92-993e-6177e0dfe23a" />
+
 ------------------------------------------------------------------------
-> Ordem |V| = 5.
-> Tamanho |E| = 6.
-> Grau do vértice 1 = 3.
-> Grau do vértice 2 = 2.
-> Grau do vértice 3 = 2.
-> Grau do vértice 4 = 4.
-> Grau do vértice 5 = 1.
->
-<img width="451" height="332" alt="ex01" src="https://github.com/user-attachments/assets/5095546d-994c-4b92-993e-6177e0dfe23a" />
-
--------------------------------------------------------------------------
-
 
 ## 4. Atividade 2 - Incidência e adjacência
 
@@ -100,14 +103,13 @@ Utilize o grafo construído na Atividade 1.
 
 ### Registro
 
-
-|  Vértice | Vértices adjacentes | Arestas incidentes |
-| :--- | :---: | ---: |
-|1  | 2, 4 e 5 | (1,2), (1,4) e (1,5) |
-|2  | 1 e 3  | (1,2) e (2,3) |
-|3   | 2 e 4  |  (2,3) e (3,4)|
-|4 |  1, 3 e 4 | (1,4), (3,4) e (4,4)|
-|5| 1 | (1,5)|
+| Vértice | Vértices adjacentes | Arestas incidentes |
+|:-:|:-:|:--|
+| 1 | 2, 4 e 5 | (1,2), (1,4) e (1,5) |
+| 2 | 1 e 3 | (1,2) e (2,3) |
+| 3 | 2 e 4 | (2,3) e (3,4) |
+| 4 | 1, 3 e 4 | (1,4), (3,4) e (4,4) |
+| 5 | 1 | (1,5) |
 
 
 ### Plataformas
@@ -150,11 +152,18 @@ Crie uma pequena rede de amizades entre essas pessoas.
 -   papel;
 -   Google Colab com NetworkX.
 
-------------------------------------------------------------------------
-> V = {João, Carolina, Maria, Marco} E = {(João, Carolina), (João, Maria), (João, Marco), (Carolina, Maria), (Carolina, Marco), (Maria, Marco)} O > grafo é não dirigido pois a amizade é mútua.
-<img width="421" height="269" alt="image" src="https://github.com/user-attachments/assets/276e269d-165b-4eee-8050-3300f44ce835" />
+### Resolução
+
+- **Vértices:** `V = {João, Carolina, Maria, Marco}`
+- **Arestas:** `E = {(João, Carolina), (João, Maria), (João, Marco), (Carolina, Maria), (Carolina, Marco), (Maria, Marco)}`
+- **Tipo de grafo:** não dirigido, pois a amizade é mútua.
+
+**Grafo:**
+
+<img width="421" height="269" alt="Grafo da rede de amizades" src="https://github.com/user-attachments/assets/276e269d-165b-4eee-8050-3300f44ce835" />
 
 ------------------------------------------------------------------------
+
 ## 6. Atividade 4 - Modelagem de ruas de mão única
 
 ### Situação
@@ -181,33 +190,34 @@ mão única.
 -   Graphviz;
 -   Google Colab com NetworkX.
 
-------------------------------------------------------------------------
-> V = {1, 2, 3, 4} E = {(1, 2), (2, 3), (3, 4), (4, 1), (1, 3)} Vértice 3: Grau de entrada 2, grau de saída 1 O grafo não dirigido não se
-> enquadra essa situação pois as ruas são de sentido único. O grafo não dirigido não representa sentido em suas arestas.
-<img width="464" height="302" alt="image" src="https://github.com/user-attachments/assets/87468cf1-3f61-4d47-b182-de4f029a052a" />
+### Resolução
+
+- **Vértices:** `V = {1, 2, 3, 4}`
+- **Arestas dirigidas:** `E = {(1,2), (2,3), (3,4), (4,1), (1,3)}`
+- **Vértice 3:** grau de entrada 2 e grau de saída 1.
+- **Por que um grafo não dirigido não serve:** as ruas são de sentido único, e o grafo não dirigido não representa sentido em suas arestas.
+
+**Grafo:**
+
+<img width="464" height="302" alt="Grafo dirigido das ruas de mão única" src="https://github.com/user-attachments/assets/87468cf1-3f61-4d47-b182-de4f029a052a" />
 
 ------------------------------------------------------------------------
+
 ## 7. Atividade 5 - Desafio de isomorfismo
 
 ### Faça
 
-Dois grafos podem ter desenhos e rótulos diferentes e ainda apresentar a mesma estrutura. Compare os
-grafos a seguir:
-G: V = {1, 2, 3, 4}; E = {(1,2), (2,3), (3,4), (4,1)}
-H: V = {a, b, c, d}; E = {(a,c), (c,b), (b,d), (d,a)}
-O que fazer
-1. Determine a ordem e o tamanho de cada grafo.
-2. Calcule o grau de cada vértice e escreva a sequência de graus de G e H.
-3. Procure uma correspondência entre os vértices de G e os de H.
-4. Verifique, aresta por aresta, se a correspondência preserva as adjacências.
-5. Conclua se os grafos são isomorfos e justifique.
+Dois grafos podem ter desenhos e rótulos diferentes e ainda apresentar a mesma estrutura. Compare os grafos a seguir:
 
-### Registro sugerido
+- `G: V = {1, 2, 3, 4}; E = {(1,2), (2,3), (3,4), (4,1)}`
+- `H: V = {a, b, c, d}; E = {(a,c), (c,b), (b,d), (d,a)}`
 
-  |Vértice do grafo G |  Vértice correspondente no grafo H|
- 
-                       
-            
+1.  Determine a ordem e o tamanho de cada grafo.
+2.  Calcule o grau de cada vértice e escreva a sequência de graus de G e H.
+3.  Procure uma correspondência entre os vértices de G e os de H.
+4.  Verifique, aresta por aresta, se a correspondência preserva as adjacências.
+5.  Conclua se os grafos são isomorfos e justifique.
+
 > Não considere apenas a aparência dos desenhos. Grafos desenhados de
 > formas diferentes podem apresentar a mesma estrutura.
 
@@ -217,47 +227,53 @@ O que fazer
 -   Graph Online;
 -   diagrams.net.
 
--------------------------------------------------------------------------------------
-5.1- 
-Ordem e Tamanho
-Grafo G: Ordem é 4 (possui os vértices 1, 2, 3, 4) e o Tamanho é 4 (possui 4 arestas).
-Grafo H: Ordem é 4 (possui os vértices a, b, c, d) e o Tamanho é 4 (possui 4 arestas).
--------------------------------------------------------------------------------------
-5.2-
-Grau de cada vértice e sequência de graus
-Grafo G: O conjunto de arestas é {(1,2), (2,3), (3,4), (4,1)}.   
-Grau do vértice 1: 2 (ligado a 2 e 4)
-Grau do vértice 2: 2 (ligado a 1 e 3)
-Grau do vértice 3: 2 (ligado a 2 e 4)
-Grau do vértice 4: 2 (ligado a 1 e 3)
-Sequência de graus de G: (2, 2, 2, 2)
+### Resolução
 
-Grafo H: O conjunto de arestas é {(a,c), (c,b), (b,d), (d,a)}.   
-Grau do vértice a: 2 (ligado a c e d)
-Grau do vértice b: 2 (ligado a c e d)
-Grau do vértice c: 2 (ligado a a e b)
-Grau do vértice d: 2 (ligado a b e a)
-Sequência de graus de H: (2, 2, 2, 2)
---------------------------------------------------------------------------------------------------------
-5.3 e 5.4-
-Correspondência e preservação das adjacências
-Ao analisar a estrutura, ambos são grafos em formato de ciclo com 4 vértices.
-Podemos mapear caminhando pelas arestas: em G, partimos de 1 -> 2 -> 3 -> 4 -> 1; em H, partimos de a -> c -> b -> d -> a.
+#### 5.1 Ordem e tamanho
 
-|Vértice em G      |      Correspondente em H|
-|1                 |              a|
-|2                 |              c|
-|3                 |              b|
-|4                 |              d|
+- **Grafo G:** ordem 4 (vértices 1, 2, 3, 4) e tamanho 4 (4 arestas).
+- **Grafo H:** ordem 4 (vértices a, b, c, d) e tamanho 4 (4 arestas).
 
-----------------------------------------------------------------------------------------------------------
-5.5-
-Conclusão e Justificativa
-Sim, os grafos são isomorfos.
-A justificativa é que eles possuem o mesmo número de vértices (ordem 4), o mesmo número de arestas (tamanho 4), a mesma sequência de graus (2, 2, 2, 2) e, mais importante, é possível estabelecer uma 
-função bijetora (o mapeamento da tabela acima) que preserva perfeitamente todas as adjacências originais de ambos os grafos. Ambos representam um ciclo idêntico.
+#### 5.2 Grau de cada vértice e sequência de graus
 
--------------------------------------------------------------------------------------------------------
+**Grafo G:** `E = {(1,2), (2,3), (3,4), (4,1)}`
+
+| Vértice | Grau | Ligado a |
+|:-:|:-:|:-:|
+| 1 | 2 | 2 e 4 |
+| 2 | 2 | 1 e 3 |
+| 3 | 2 | 2 e 4 |
+| 4 | 2 | 1 e 3 |
+
+Sequência de graus de G: `(2, 2, 2, 2)`
+
+**Grafo H:** `E = {(a,c), (c,b), (b,d), (d,a)}`
+
+| Vértice | Grau | Ligado a |
+|:-:|:-:|:-:|
+| a | 2 | c e d |
+| b | 2 | c e d |
+| c | 2 | a e b |
+| d | 2 | a e b |
+
+Sequência de graus de H: `(2, 2, 2, 2)`
+
+#### 5.3 e 5.4 Correspondência e preservação das adjacências
+
+Ambos os grafos têm formato de ciclo com 4 vértices. Percorrendo as arestas: em G, `1 → 2 → 3 → 4 → 1`; em H, `a → c → b → d → a`.
+
+| Vértice em G | Correspondente em H |
+|:-:|:-:|
+| 1 | a |
+| 2 | c |
+| 3 | b |
+| 4 | d |
+
+#### 5.5 Conclusão e justificativa
+
+Sim, os grafos são **isomorfos**. Eles têm o mesmo número de vértices (ordem 4), o mesmo número de arestas (tamanho 4), a mesma sequência de graus `(2, 2, 2, 2)` e, mais importante, existe uma função bijetora (o mapeamento da tabela acima) que preserva todas as adjacências. Ambos representam o mesmo ciclo.
+
+------------------------------------------------------------------------
 
 ## 8. Atividade 6 - Construindo subgrafos
 
@@ -325,34 +341,34 @@ indicada pela professora.
 
 ------------------------------------------------------------------------
 
-<img width="328" height="348" alt="graphviz" src="https://github.com/user-attachments/assets/57cb9ec5-9ef9-4cd7-9dbe-aebd23e0fa4a" /> 
+### Resolução
+
+#### 7.1 Grafo construído
+
+<img width="328" height="348" alt="Grafo construído na Atividade 7" src="https://github.com/user-attachments/assets/57cb9ec5-9ef9-4cd7-9dbe-aebd23e0fa4a" />
+
+#### 7.2 Tabela de graus obtidos
+
+| Vértice | Grau obtido | Conectado a |
+|:-:|:-:|:--|
+| A | 6 | B, C, D, E, F, G |
+| B | 4 | A, C, D, E |
+| C | 4 | A, B, D, H |
+| D | 3 | A, B, C |
+| E | 3 | A, B, F |
+| F | 2 | A, E |
+| G | 1 | A |
+| H | 1 | C |
+
+#### 7.3 Arestas, sequência e verificação
+
+- **Arestas:** `E = {(A,B), (A,C), (A,D), (A,E), (A,F), (A,G), (B,C), (B,D), (B,E), (C,D), (C,H), (E,F)}`
+- **Sequência obtida (ordem não decrescente):** `(1, 1, 2, 3, 3, 4, 4, 6)`
+- **Soma dos graus:** 1 + 1 + 2 + 3 + 3 + 4 + 4 + 6 = 24
+- **Número de arestas:** 12 (contando os pares de E)
+- **Verificação:** a soma dos graus é 24 e 2 × 12 = 24, o que confirma o Lema dos Apertos de Mão.
 
 ------------------------------------------------------------------------
-7.2-
-Tabela de Graus Obtidos
-De acordo com a construção acima, preenchemos a tabela:
-|Vértice           |     Grau obtido|
-|A                 |     6 (conectado a B, C, D, E, F, G)|
-|B                 |     4 (conectado a A, C, D, E)|
-|C                 |     4 (conectado a A, B, D, H)|
-|D                 |     3 (conectado a A, B, C)|
-|E                 |     3 (conectado a A, B, F)|
-|F                 |     2 (conectado a A, E)|
-|G                 |     1 (conectado a A)|
-|H                 |     1 (conectado a C)|
-
---------------------------------------------------------------------------
-7.3-
-Conjunto de arestas E:
-E = {(A,B), (A,C), (A,D), (A,E), (A,F), (A,G), (B,C), (B,D), (B,E), (C,D), (C,H), (E,F)}
-Sequência obtida:
-(1, 1, 2, 3, 3, 4, 4, 6) (ordenada de forma não decrescente, conforme solicitado).
-Soma dos graus:1 + 1 + 2 + 3 + 3 + 4 + 4 + 6 = 24
-Número de arestas:Contando os pares no conjunto E, temos 12 arestas.
-A soma dos graus é 24. Duas vezes o número de arestas é 2 X 12 = 24. 
-Isso comprova o Teorema do Aperto de Mãos (ou Lema dos Apertos de Mão).
-
-----------------------------------------------------------------------------
 
 ## 10. Plataformas recomendadas
 
