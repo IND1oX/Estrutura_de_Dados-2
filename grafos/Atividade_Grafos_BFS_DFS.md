@@ -13,7 +13,7 @@ Este arquivo reúne tudo em um só lugar: modelagem, código, experimentos, comp
 
 Uma indisponibilidade de recursos de navegação pode obrigar a replanejar rotas. Para estudar esse tipo de situação, a rede é modelada como um grafo e são comparados dois algoritmos de busca, a BFS (busca em largura) e a DFS (busca em profundidade).
 
-**Pergunta de pesquisa:** *quantas conexões da rede precisam ser bloqueadas para que Brasília deixe de alcançar Curitiba, e como a BFS e a DFS se comportam a cada bloqueio?*
+**Pergunta de pesquisa:** *como a BFS e a DFS se comportam quando a conexão BSB–CNF (Brasília–Belo Horizonte) é bloqueada?*
 
 **Objetivo:** projetar um grafo próprio com pelo menos sete vértices, implementar BFS e DFS em Python, simular bloqueios de conexões sem alterar a rede original e justificar os resultados.
 
@@ -25,12 +25,12 @@ Grafo simples, **não dirigido** e **não ponderado**, `G = (V, E)`:
 - cada aresta em `E` é uma ligação permitida nos dois sentidos;
 - não há laços nem conexões repetidas (o programa rejeita laços e ignora repetições).
 
-**V** (9 cidades): Brasília, Goiânia, Belo Horizonte, Campo Grande, São Paulo, Rio de Janeiro, Curitiba, Porto Alegre e Florianópolis.
+**V** (9 cidades): Brasília (BSB), Goiânia (GYN), Belo Horizonte (CNF), Campo Grande (CGR), São Paulo (GRU), Rio de Janeiro (GIG), Curitiba (CWB), Porto Alegre (POA) e Florianópolis (FLN). Os códigos IATA são usados como rótulos no diagrama; os nomes completos permanecem no código para facilitar a leitura.
 
 | # | Conexão | Justificativa (fictícia) |
 |---:|---|---|
 | 1 | Brasília – Goiânia | cidades vizinhas no Centro-Oeste |
-| 2 | Brasília – Belo Horizonte | eixo Centro-Oeste/Sudeste |
+| 2 | Brasília (BSB) – Belo Horizonte (CNF) | eixo Centro-Oeste/Sudeste — **BLOQUEADA** no cenário ilustrado |
 | 3 | Goiânia – Campo Grande | corredor do Centro-Oeste |
 | 4 | Goiânia – São Paulo | ligação com o principal polo do Sudeste |
 | 5 | Belo Horizonte – Rio de Janeiro | eixo Minas/Rio |
@@ -45,30 +45,33 @@ Ordem `|V| = 9` e tamanho `|E| = 11`. Soma dos graus: 2 + 3 + 3 + 2 + 4 + 2 + 2 
 
 ### Diagrama do grafo
 
+A aresta **BSB–CNF** está destacada em vermelho e tracejada para indicar o bloqueio. Como a conexão **BSB–GYN permanece ativa**, Brasília **não fica isolada**: ainda alcança o restante da rede por Goiânia.
+
 ```mermaid
 graph LR
-    BSB((Brasília)) --- GYN((Goiânia))
-    BSB --- BH((Belo Horizonte))
-    GYN --- CGR((Campo Grande))
-    GYN --- SP((São Paulo))
-    BH --- RJ((Rio de Janeiro))
-    BH --- SP
-    RJ --- SP
-    SP --- CWB((Curitiba))
-    CGR --- POA((Porto Alegre))
-    POA --- FLN((Florianópolis))
+    BSB((BSB<br/>Brasília)) --- GYN((GYN<br/>Goiânia))
+    BSB -.-x|BLOQUEADA| CNF((CNF<br/>Belo Horizonte))
+    GYN --- CGR((CGR<br/>Campo Grande))
+    GYN --- GRU((GRU<br/>São Paulo))
+    CNF --- GIG((GIG<br/>Rio de Janeiro))
+    CNF --- GRU
+    GIG --- GRU
+    GRU --- CWB((CWB<br/>Curitiba))
+    CGR --- POA((POA<br/>Porto Alegre))
+    POA --- FLN((FLN<br/>Florianópolis))
     FLN --- CWB
+    linkStyle 1 stroke:#e53935,stroke-width:4px,stroke-dasharray: 6 4
 ```
 
 Versão em texto do mesmo diagrama:
 
 ```text
-Brasília ── Goiânia ── Campo Grande ── Porto Alegre ── Florianópolis ── Curitiba
-    │           │                                                          │
-    │           └───────────── São Paulo ──────────────────────────────────┘
-    │                         /    │
-    └── Belo Horizonte ──────┘     │
-              └──── Rio de Janeiro ┘
+BSB (Brasília) ── GYN (Goiânia) ── CGR (Campo Grande) ── POA (Porto Alegre) ── FLN (Florianópolis) ── CWB (Curitiba)
+       ╳
+       ╳  CNF (Belo Horizonte) [BLOQUEADA: conexão BSB–CNF]
+       │                         │
+       └── GIG (Rio de Janeiro) ── GRU (São Paulo) ─────────────────────── CWB
+                    └──────────── GRU
 ```
 
 ### Representação computacional
@@ -296,12 +299,12 @@ Cenário: rede completa
 
 A BFS acha o caminho de **3** arestas e a DFS, um de **5**: a DFS seguiu o primeiro vizinho de cada cidade (Goiânia, depois Campo Grande...) e só chegou a Curitiba pelo litoral sul.
 
-### Experimento B: bloqueio de uma conexão
+### Experimento B: bloqueio da conexão BSB–CNF
 
-A rede original não é alterada: `com_bloqueio` trabalha em uma cópia.
+A rede original não é alterada: `com_bloqueio` trabalha em uma cópia. O bloqueio de Brasília–Belo Horizonte não isola Brasília, pois BSB–GYN continua disponível.
 
 ```python
-for a, b in (("Goiânia", "São Paulo"), ("São Paulo", "Curitiba")):
+for a, b in (("Brasília", "Belo Horizonte"), ("São Paulo", "Curitiba")):
     print(relatorio_cenario(f"bloqueio de {a}–{b}", rede.com_bloqueio(a, b), "Brasília", "Curitiba"))
     print()
 print("Conexões da rede original depois dos bloqueios:", len(rede.conexoes()))
@@ -310,8 +313,8 @@ print("Conexões da rede original depois dos bloqueios:", len(rede.conexoes()))
 **Saída:**
 
 ```text
-Cenário: bloqueio de Goiânia–São Paulo
-  BFS: Brasília → Belo Horizonte → São Paulo → Curitiba (3 arestas)
+Cenário: bloqueio de Brasília–Belo Horizonte
+  BFS: Brasília → Goiânia → São Paulo → Curitiba (3 arestas)
   DFS: Brasília → Goiânia → Campo Grande → Porto Alegre → Florianópolis → Curitiba (5 arestas)
 
 Cenário: bloqueio de São Paulo–Curitiba
@@ -321,7 +324,7 @@ Cenário: bloqueio de São Paulo–Curitiba
 Conexões da rede original depois dos bloqueios: 11
 ```
 
-Bloquear **Goiânia–São Paulo** desvia a BFS por Belo Horizonte, ainda com 3 arestas; a DFS não muda, pois seu caminho não usava essa conexão. Bloquear **São Paulo–Curitiba** obriga as duas buscas a usar o litoral sul (5 arestas).
+Bloquear **BSB–CNF** remove a ligação direta de Brasília com Belo Horizonte, mas não interrompe a conectividade: a BFS segue por Goiânia e São Paulo (3 arestas), enquanto a DFS segue pelo interior e litoral sul (5 arestas). Bloquear **São Paulo–Curitiba** obriga as duas buscas a usar o litoral sul (5 arestas).
 
 ### Experimento C: um segundo bloqueio e conectividade
 
